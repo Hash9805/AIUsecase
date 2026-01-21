@@ -10,7 +10,7 @@ class ChatLogic:
         self.client = Groq(api_key=groq_api_key)
         self.conversation_history = []
         self.max_history = MAX_CONVERSATION_HISTORY
-        self.model = "llama-3.1-70b-versatile"  # Fast and good quality
+        self.model = "llama-3.3-70b-versatile"  # Updated model
     
     def add_message(self, role: str, content: str):
         """Add message to conversation history"""
