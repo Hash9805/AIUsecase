@@ -9,7 +9,7 @@ class ChatLogic:
 
     def __init__(self):
         self.client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-        self.model = "llama3-8b-8192"
+        self.model = "llama-3.1-8b-instant"
         self.conversation_history: List[Dict] = []
         self.max_history = MAX_CONVERSATION_HISTORY
 
