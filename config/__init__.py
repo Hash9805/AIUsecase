@@ -13,7 +13,8 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 DB_DIR.mkdir(exist_ok=True)
 
 # API Keys (will be loaded from Streamlit secrets or .env)
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")  # For embeddings only
 
 # Email Configuration
 EMAIL_HOST = "smtp.gmail.com"
@@ -28,8 +29,8 @@ DATABASE_URL = f"sqlite:///{DB_DIR}/salon_bookings.db"
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 EMBEDDING_MODEL = "text-embedding-3-small"
-LLM_MODEL = "gpt-4o-mini"
-MAX_CONVERSATION_HISTORY = 10
+LLM_MODEL = "gpt-3.5-turbo"
+MAX_CONVERSATION_HISTORY = 20
 
 # Booking Configuration
 SALON_SERVICES = [

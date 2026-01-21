@@ -11,7 +11,7 @@ from utils.tools import BookingTools
 from app.chat_logic import ChatLogic
 from app.booking_flow import BookingFlow
 from app.admin_dashboard import show_admin_dashboard
-from config import OPENAI_API_KEY, SALON_SERVICES, UPLOAD_DIR
+from config import GROQ_API_KEY, OPENAI_API_KEY, SALON_SERVICES, UPLOAD_DIR
 import os
 
 # Page configuration
@@ -167,17 +167,24 @@ if 'initialized' not in st.session_state:
     st.session_state.booking_flow = BookingFlow()
     st.session_state.page = "chat"
     
-    # Check for API key
-    api_key = OPENAI_API_KEY or st.secrets.get("OPENAI_API_KEY", "")
-    if not api_key:
-        st.error("⚠️ OpenAI API key not found. Please set it in Streamlit secrets.")
+    # Check for API keys
+    groq_key = GROQ_API_KEY or st.secrets.get("GROQ_API_KEY", "")
+    openai_key = OPENAI_API_KEY or st.secrets.get("OPENAI_API_KEY", "")
+    
+    if not groq_key:
+        st.error("⚠️ Groq API key not found. Please set it in Streamlit secrets.")
         st.stop()
     
-    st.session_state.api_key = api_key
-    st.session_state.rag_pipeline = RAGPipeline(api_key)
-    st.session_state.rag_pipeline.load_existing_vector_store()
+    if not openai_key:
+        st.warning("⚠️ OpenAI API key not found. RAG features will be limited.")
+    
+    st.session_state.groq_key = groq_key
+    st.session_state.openai_key = openai_key
+    st.session_state.rag_pipeline = RAGPipeline(openai_key) if openai_key else None
+    if st.session_state.rag_pipeline:
+        st.session_state.rag_pipeline.load_existing_vector_store()
     st.session_state.booking_tools = BookingTools(st.session_state.rag_pipeline)
-    st.session_state.chat_logic = ChatLogic(api_key)
+    st.session_state.chat_logic = ChatLogic(groq_key)
 
 # Sidebar
 with st.sidebar:
