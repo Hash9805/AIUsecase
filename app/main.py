@@ -11,7 +11,7 @@ from utils.tools import BookingTools
 from app.chat_logic import ChatLogic
 from app.booking_flow import BookingFlow
 from app.admin_dashboard import show_admin_dashboard
-from config import GROQ_API_KEY, SALON_SERVICES, UPLOAD_DIR
+from config import SALON_SERVICES, UPLOAD_DIR
 import os
 
 # Page configuration
@@ -168,24 +168,12 @@ if 'initialized' not in st.session_state:
     st.session_state.booking_flow = BookingFlow()
     st.session_state.page = "chat"
     
-    # Check for API keys
-    groq_key = GROQ_API_KEY or st.secrets.get("GROQ_API_KEY", "")
+    st.session_state.chat_logic = ChatLogic()
     
-    if not groq_key:
-        st.error("⚠️ Groq API key not found. Please set it in Streamlit secrets.")
-        st.stop()
-    
-    if not openai_key:
-        st.warning("⚠️ OpenAI API key not found. RAG features will be limited.")
-    
-    st.session_state.groq_key = groq_key
-    st.session_state.openai_key = openai_key
-    st.session_state.rag_pipeline = RAGPipeline(openai_key) if openai_key else None
-    if st.session_state.rag_pipeline:
-        st.session_state.rag_pipeline.load_existing_vector_store()
+    st.session_state.rag_pipeline = RAGPipeline()
     st.session_state.booking_tools = BookingTools(st.session_state.rag_pipeline)
-    st.session_state.chat_logic = ChatLogic(groq_key)
 
+    
 # Sidebar
 with st.sidebar:
     st.markdown("### 💅 Glamour Salon")
@@ -298,7 +286,7 @@ else:  # Admin Dashboard
 st.markdown("---")
 st.markdown(
     "<div style='text-align: center; color: #666;'>"
-    "💅 Glamour Salon AI Booking Assistant | Powered by OpenAI & Streamlit"
+    "💅 Glamour Salon AI Booking Assistant | Powered by Streamlit"
     "</div>",
     unsafe_allow_html=True
 )
