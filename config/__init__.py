@@ -28,8 +28,8 @@ DATABASE_URL = f"sqlite:///{DB_DIR}/salon_bookings.db"
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 EMBEDDING_MODEL = "text-embedding-3-small"
-LLM_MODEL = "gpt-3.5-turbo"
-MAX_CONVERSATION_HISTORY = 20
+LLM_MODEL = "gpt-4o-mini"
+MAX_CONVERSATION_HISTORY = 10
 
 # Booking Configuration
 SALON_SERVICES = [
