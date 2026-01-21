@@ -11,7 +11,7 @@ from utils.tools import BookingTools
 from app.chat_logic import ChatLogic
 from app.booking_flow import BookingFlow
 from app.admin_dashboard import show_admin_dashboard
-from config import GROQ_API_KEY, OPENAI_API_KEY, SALON_SERVICES, UPLOAD_DIR
+from config import GROQ_API_KEY, SALON_SERVICES, UPLOAD_DIR
 import os
 
 # Page configuration
@@ -39,7 +39,8 @@ st.markdown("""
         margin-bottom: 2rem;
     }
     .stChatMessage {
-        background-color: #f8f9fa;
+        background-color: #f8f9;
+        color: #000000;
         border-radius: 10px;
         padding: 10px;
         margin: 5px 0;
