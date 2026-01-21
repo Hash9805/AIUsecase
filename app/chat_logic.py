@@ -95,14 +95,15 @@ Be warm, professional, and concise. Keep responses friendly but brief."""
             messages.append({"role": "user", "content": user_message})
             
             # Generate response
-            response = self.client.chat.completions.create(
+            response = self.client.responses.create(
                 model=LLM_MODEL,
-                messages=messages,
+                input=messages,
                 temperature=0.7,
-                max_tokens=300
+                max_output_tokens=300
             )
             
-            return response.choices[0].message.content
+            return response.output_text
+
             
         except Exception as e:
             return f"I apologize, but I'm having trouble generating a response right now. Error: {str(e)}"
