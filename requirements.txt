@@ -1,8 +1,8 @@
-streamlit>=1.30.0
-groq>=0.4.0
-openai>=1.0.0
-pypdf>=4.0.0
-sqlalchemy>=2.0.0
-pandas>=2.0.0
-faiss-cpu>=1.7.0
-tiktoken>=0.6.0
+streamlit
+groq
+sentence-transformers
+faiss-cpu
+langchain-community
+langchain-text-splitters
+requests
+python-dotenv
