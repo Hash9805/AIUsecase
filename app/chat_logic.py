@@ -95,11 +95,9 @@ class ChatLogic:
 
             return response.choices[0].message.content
 
-        except Exception:
-            return (
-                "Sorry 😕 I’m having trouble answering right now. "
-                "Please try again in a moment."
-            )
+        except Exception as e:
+    return f"Groq error: {str(e)}"
+
 
     def get_summary_for_context(self) -> str:
         if not self.conversation_history:
