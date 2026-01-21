@@ -170,7 +170,6 @@ if 'initialized' not in st.session_state:
     
     # Check for API keys
     groq_key = GROQ_API_KEY or st.secrets.get("GROQ_API_KEY", "")
-    openai_key = OPENAI_API_KEY or st.secrets.get("OPENAI_API_KEY", "")
     
     if not groq_key:
         st.error("⚠️ Groq API key not found. Please set it in Streamlit secrets.")
